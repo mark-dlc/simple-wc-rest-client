@@ -85,7 +85,11 @@ class SimpleWcRestClient
 		$consumer_secret = $request_data['consumer_secret'];
 		$options         = $request_data['options'];
 		$endpoint        = $request_data['endpoint'];
-		$data 			 = ($request_data['data'] === null || json_decode($request_data['data']) == null) ? [] : (array) json_decode($request_data['data']);
+		if (is_array($request_data['data']))
+			$data = $request_data['data'];
+		else
+			$data = ($request_data['data'] === null || json_decode($request_data['data']) == null) ? [] : (array) json_decode($request_data['data']);
+
 		$results;
 
 		try{
@@ -163,7 +167,11 @@ class SimpleWcRestClient
 		$consumer_secret = $request_data['consumer_secret'];
 		$endpoint        = $request_data['endpoint'];
 		$options = $request_data['options'];
-		$parameters = ($request_data['parameters'] === null || json_decode($request_data['parameters']) == null) ? [] : (array) json_decode($request_data['parameters']);
+		if (is_array($request_data['parameters']))
+			$parameters = $request_data['parameters'];
+		else
+			$parameters = ($request_data['parameters'] === null || json_decode($request_data['parameters']) == null) ? [] : (array) json_decode($request_data['parameters']);
+
 		$results;
 
 		try{
